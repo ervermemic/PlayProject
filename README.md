@@ -11,6 +11,7 @@ The story can be public or private, or only specific group of users can see it.
 Admin can to delete or block a story or user. 
  
 
+
 #Configuration
 
 Application is running on localhost:9000
