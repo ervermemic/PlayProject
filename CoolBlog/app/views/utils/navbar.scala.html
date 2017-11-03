@@ -1,3 +1,6 @@
+@import helpers.SessionHelper
+@import models.User
+@()(implicit currentUser: User = SessionHelper.getCurrentUser(ctx()))
 <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/my_css/navbar.css")">
 
 <div class="">
@@ -23,11 +26,15 @@
                         <li><a href="/">CoolBlog</a></li>
                         <li class="active"><a href="/">Link 1</a></li>
                         <li><a href="#">Link2</a></li>
-
                     </ul>
                     <ul class="nav navbar-nav navbar-right hidden-xs">
-                        <li><a href="/log">Sing in</a></li>
-                        <li><a href="#">Sing out</a></li>
+                        @if(currentUser != null){
+                            <li><a>@currentUser.getUsername</a></li>
+                            <li><a href="/singout">Sing out</a></li>
+                        }else{
+                            <li><a href="/log">Sing in</a></li>
+                        }
+
                     </ul>
                     <ul class="nav navbar-nav navbar-right hidden-xs">
                         <a type="button" class="navbar-btn btn btn-gradient-blue" am-latosans="bold" href="#">Support</a>

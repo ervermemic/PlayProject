@@ -19,6 +19,7 @@ var submitBtn = "signupSubmit";
 
 function inputValidate(id) {
     var element = document.getElementById(id);
+
     if (id == usernameId) {
         validateUsername(element);
     }
@@ -34,6 +35,7 @@ function inputValidate(id) {
     if (id == birthDateId) {
         validateBirthDate(element);
     }
+
     checkAll();
 }
 
@@ -132,6 +134,7 @@ function checkAll() {
     if (!isValidDate(birthDate)) {
         inputDisabled = true;
     }
+
     if (inputDisabled) {
         document.getElementById(submitBtn).classList.remove("btn-success");
         document.getElementById(submitBtn).classList.add("btn-danger");
