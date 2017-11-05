@@ -2,9 +2,7 @@ package controllers;
 
 import com.google.inject.Inject;
 import models.User;
-import play.Logger;
 import play.data.DynamicForm;
-import play.data.Form;
 import play.data.FormFactory;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -32,10 +30,10 @@ public class RegisterController extends Controller {
         dynamicForm.bindFromRequest(request());
 
         if(User.createUser(dynamicForm)){
-            flash("success", "message");
+            flash("success", "registration success");
             return ok(index.render("Welcome"));
         }else{
-            flash("warning", "message");
+            flash("warning", "registration failed");
         }
         return ok(index.render("Welcome"));
     }

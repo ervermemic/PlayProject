@@ -4,6 +4,9 @@ import java.time.Clock;
 import java.time.Instant;
 import java.util.concurrent.CompletableFuture;
 import javax.inject.*;
+
+import helpers.StartFactors;
+import models.Role;
 import play.Logger;
 import play.inject.ApplicationLifecycle;
 
@@ -36,6 +39,10 @@ public class ApplicationTimer {
         start = clock.instant();
         Logger.info("ApplicationTimer demo: Starting application at " + start);
 
+        if(Role.findRole.findRowCount() < 1){
+            StartFactors.addRole();
+        }
+
         // When the application starts, register a stop hook with the
         // ApplicationLifecycle object. The code inside the stop hook will
         // be run when the application stops.
@@ -43,6 +50,7 @@ public class ApplicationTimer {
             Instant stop = clock.instant();
             Long runningTime = stop.getEpochSecond() - start.getEpochSecond();
             Logger.info("ApplicationTimer demo: Stopping application at " + clock.instant() + " after " + runningTime + "s.");
+
             return CompletableFuture.completedFuture(null);
         });
     }

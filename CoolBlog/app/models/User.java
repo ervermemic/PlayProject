@@ -39,6 +39,10 @@ public class User extends Model {
     @Column(name = "create_date", updatable = false)
     private String creationDate;
 
+    @Column
+    @ManyToOne
+    private Role role;
+
     //Constructor
     public User() {
     }
@@ -91,6 +95,14 @@ public class User extends Model {
         this.creationDate = creationDate;
     }
 
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
     public static User findByEmail(String email) {
         return find.where().eq("email", email).findUnique();
     }
@@ -104,6 +116,8 @@ public class User extends Model {
             user.setPassword(MD5Hash.getEncriptedPasswordMD5(dynamicForm.get("password")));
             user.setBirthDate(dynamicForm.get("birth_date"));
             user.setCreationDate(new SimpleDateFormat("EEE, dd.MM.yyyy - HH:mm").format(new Date()));
+            Role role = Role.findRole.byId(1l);
+            user.setRole(role);
             user.save();
             LoginController.createSession(user);
         }catch (PersistenceException e){

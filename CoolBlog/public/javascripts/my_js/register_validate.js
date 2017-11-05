@@ -14,8 +14,7 @@ var emailId = "email";
 var passwordId = "password";
 var passwordAgainId = "password_again";
 var birthDateId = "birth_date";
-var submitBtn = "signupSubmit";
-
+var submitBtn = "signUpSubmit";
 
 function inputValidate(id) {
     var element = document.getElementById(id);
@@ -36,6 +35,15 @@ function inputValidate(id) {
         validateBirthDate(element);
     }
 
+    checkAll();
+}
+
+function checkBirthDateValidate(){
+    var element = document.getElementById(birthDateId);
+    var birthDate = element.value;
+    if (birthDate.length == 10) {
+        validateBirthDate(element);
+    }
     checkAll();
 }
 
@@ -102,15 +110,15 @@ function checkPasswords() {
 
 function validateBirthDate(element) {
     var birthDate = element.value;
-    if (!isValidFormatDate) {
-        inputError(element);
-        setPlaceholder(birthDateId, "Valid format: dd-mm-yyyy");
-    } else if (!isValidDate(birthDate)) {
-        inputError(element);
-        setPlaceholder(birthDateId, "Date not valid");
-    } else {
-        inputSuccess(element);
-    }
+        if (!isValidFormatDate) {
+            inputError(element);
+            setPlaceholder(birthDateId, "Valid format: dd-mm-yyyy");
+        } else if (!isValidDate(birthDate)) {
+            inputError(element);
+            setPlaceholder(birthDateId, "Date not valid");
+        } else {
+            inputSuccess(element);
+        }
 }
 
 /**
