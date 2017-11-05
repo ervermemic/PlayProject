@@ -3,6 +3,13 @@
 
 # --- !Ups
 
+create table category (
+  id                            bigint auto_increment not null,
+  category_name                 varchar(50),
+  constraint uq_category_category_name unique (category_name),
+  constraint pk_category primary key (id)
+);
+
 create table role (
   id                            bigint auto_increment not null,
   name                          varchar(10),
@@ -29,6 +36,8 @@ create index ix_user_role_id on user (role_id);
 
 alter table user drop foreign key fk_user_role_id;
 drop index ix_user_role_id on user;
+
+drop table if exists category;
 
 drop table if exists role;
 

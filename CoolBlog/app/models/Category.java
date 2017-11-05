@@ -7,25 +7,26 @@ import javax.persistence.*;
 import java.util.List;
 
 /**
- * Created by Enver on 11/5/2017.
+ * Created by Enver on 11/6/2017.
  */
 @Entity
 @Table(name = "category")
 public class Category extends Model {
 
-    private static Finder<Long, Category> findCategory = new Finder<>(Category.class);
+    public static Model.Finder<Long, Category> findCategory = new Finder<>(Category.class);
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "category", unique = true, length = 50)
-    private String category;
+    @Column(name = "category_name", unique = true, length = 50)
+    private String categoryName;
+
 
     //CONSTRUCTORS
-    public Category(String category) {
-        this.category = category;
+    public Category(String categoryName) {
+        this.categoryName = categoryName;
     }
 
     public Category() {
@@ -41,7 +42,7 @@ public class Category extends Model {
      * @return <String> name
      */
     public String getCategory() {
-        return category;
+        return categoryName;
     }
 
     /**
@@ -49,6 +50,7 @@ public class Category extends Model {
      * @param id
      * @return <Category>
      */
+
     public static Category getCategoryById(Long id){
         return findCategory.byId(id);
     }
@@ -58,28 +60,30 @@ public class Category extends Model {
      * @param </String> name
      * @return <Category>
      */
-    public static Category getCategoryByName(String category){
-        return findCategory.where().eq("category", category).findUnique();
+    public static Category getCategoryByName(String categoryName){
+        return findCategory.where().eq("category", categoryName).findUnique();
     }
 
     /**
      * Getter returns List of all Categories
      * @return List<Category>
      */
-    public static List<Category> categories = findCategory.all();
+    public static List<Category> getAllCategories(){
+        return findCategory.all();
+    }
 
     /**
      * Setter for set Category name.
      * @param </String> category
      */
-    public void setCategory(String category) {
-        this.category = category;
+    public void setCategory(String categoryName) {
+        this.categoryName = categoryName;
     }
 
 
     @Override
     public String toString() {
-        return "Category Id: " + id + ", Category name: " + category;
+        return "Category Id: " + id + ", Category name: " + categoryName;
     }
 
     /**
