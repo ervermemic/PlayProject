@@ -9,7 +9,6 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.index;
 import views.html.login.login;
-import views.html.login.register;
 
 /**
  * Created by Enver on 11/1/2017.
