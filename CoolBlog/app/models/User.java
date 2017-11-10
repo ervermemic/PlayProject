@@ -3,11 +3,13 @@ package models;
 import com.avaje.ebean.Model;
 import controllers.LoginController;
 import helpers.MD5Hash;
+import play.Logger;
 import play.data.DynamicForm;
 
 import javax.persistence.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Enver on 11/1/2017.
@@ -42,6 +44,12 @@ public class User extends Model {
     @Column
     @ManyToOne
     private Role role;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    public List<Post> posts;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    public List<Comment> comments;
 
     //Constructor
     public User() {
@@ -110,6 +118,8 @@ public class User extends Model {
     public static boolean createUser(DynamicForm dynamicForm) {
         boolean isOk = true;
         User user = new User();
+
+        Logger.info(dynamicForm.toString());
         try {
             user.setUsername(dynamicForm.get("username"));
             user.setEmail(dynamicForm.get("email"));

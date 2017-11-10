@@ -1,12 +1,21 @@
 @(user: User)
 @main("Welcome " + user.getUsername){
-  <br>
-  <br>
-  <br>
-  <br>
+
   <div class="container">
-    <h1 class="text-center">Hello @user.getUsername</h1>
-    <h2 class="text-center">Welcome on user page</h2>
+    <div class="row">
+      <div class="col-md-3">
+        <ul class="nav nav-pills nav-stacked">
+          <li class="active"><a href="#"><i class="fa fa-home fa-fw"></i>Home</a></li>
+          <li><a href="/adm-categories"><i class=""></i>Categories</a></li>
+          <li><a href="#"><i class=""></i>Pages</a></li>
+          <li><a href="#"><i class=""></i>Settings</a></li>
+        </ul>
+      </div>
+      <div class="col-md-9 well">
+
+      </div>
+    </div>
   </div>
+
 
 }

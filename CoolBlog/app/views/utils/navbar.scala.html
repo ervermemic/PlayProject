@@ -24,8 +24,10 @@
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav js-nav-add-active-class">
                         <li><a href="/">CoolBlog</a></li>
-                        <li class="active"><a href="/">Link 1</a></li>
-                        <li><a href="#">Link2</a></li>
+                        @if(currentUser != null && currentUser.getRole.getId == 1){
+                            <li class="active"><a href="/">Write Story</a></li>
+                        }
+                        <li><a href="#">Link1</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right hidden-xs">
                     @if(currentUser != null) {

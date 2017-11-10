@@ -1,0 +1,29 @@
+@(categories: List[Category], form: Form[Category])
+@main("") {
+
+    <div class="container">
+        <div class="col-md-4">
+        @for(category <- categories) {
+            <div class="row">
+            <a href="#">@category.getCategory</a>
+            </div>
+        }
+        </div>
+        <div class="col-md-8">
+            <form class="form-inline" action="/adm-add-category" method="post">
+                <div class="row">
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-xs-7">
+                                <input type="text" name="category" class="form-control" placeholder="Sport">
+                            </div>
+                            <div class="col-xs-5">
+                                <button type="submit" class="btn btn-warning btn-block">Add Category</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+}
